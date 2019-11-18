@@ -6,10 +6,10 @@ import java.util.Arrays;
  * @author leon on 09/12/2018.
  */
 public class TicTacToe {
-    private String[][] board;
+    private String[][] ticBoard;
 
     public TicTacToe(String[][] board) {
-        this.board = board;
+        this.ticBoard = board;
     }
 
     public TicTacToe() {
@@ -17,10 +17,10 @@ public class TicTacToe {
 
     public String[] getRow(Integer value) {
         String[] rowArray = new String[2];
-        for (int i = 0; i < board.length; i++){
-            if (board[i][0].equals(value) && board[i][1].equals(value) && board[i][2].equals(value)){
-                Arrays.copyOf(board, rowArray.length);
-                board[i] = rowArray;
+        for (int i = 0; i < ticBoard.length; i++){
+            if (ticBoard[i][0].equals(value) && ticBoard[i][1].equals(value) && ticBoard[i][2].equals(value)){
+                Arrays.copyOf(ticBoard, rowArray.length);
+                ticBoard[i] = rowArray;
             }
         }
         return rowArray;
@@ -40,6 +40,7 @@ public class TicTacToe {
 
     public String getWinner() {
         return null;
+
     }
 
     public String[][] getBoard() {
