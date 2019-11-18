@@ -6,8 +6,10 @@ import java.util.List;
  * @author leon on 10/12/2018.
  */
 public class Student {
+    Lab lab = new Lab();
 
     public Student() {
+
         this(null);
     }
 
@@ -15,6 +17,7 @@ public class Student {
     }
 
     public Lab getLab(String labName) {
+
         return null;
     }
 
