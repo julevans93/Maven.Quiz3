@@ -6,44 +6,56 @@ import java.util.Arrays;
  * @author leon on 09/12/2018.
  */
 public class TicTacToe {
-    private String[][] ticBoard;
+    private String[][] board = new String [3][3];
 
     public TicTacToe(String[][] board) {
-        this.ticBoard = board;
+
+        this.board = board;
     }
 
     public TicTacToe() {
     }
 
     public String[] getRow(Integer value) {
-        String[] rowArray = new String[2];
-        for (int i = 0; i < ticBoard.length; i++){
-            if (ticBoard[i][0].equals(value) && ticBoard[i][1].equals(value) && ticBoard[i][2].equals(value)){
-                Arrays.copyOf(ticBoard, rowArray.length);
-                ticBoard[i] = rowArray;
-            }
-        }
-        return rowArray;
+        return board[value];
     }
 
     public String[] getColumn(Integer value) {
-        return null;
+        String[] col = new String[3];
+        for (int i = 0; i < board.length; i++) {
+            col[i] = board[i][value];
+        }
+        return col;
     }
 
     public Boolean isRowHomogenous(Integer rowIndex) {
-        return null;
+        String[] row = getRow(rowIndex);
+        return Arrays.stream(row).allMatch(row[0]::equals);
     }
 
     public Boolean isColumnHomogeneous(Integer columnIndex) {
-        return null;
+        String[] column = getColumn(columnIndex);
+        return Arrays.stream(column).allMatch(column[0]::equals);
     }
 
     public String getWinner() {
+        for (int i = 0; i < 3; i++){
+            if (isColumnHomogeneous(i)){
+                return getColumn(i)[0];
+            }
+            else if (isRowHomogenous(i)){
+                return getRow(i)[0];
+            }
+            else if (this.board[0][0].equals(this.board[1][1]) && this.board[0][0].equals(this.board[2][2]) || this.board[0][2]
+            .equals(this.board[1][1]) && this.board[2][0].equals(this.board[0][2])){
+                return this.board[1][1];
+            }
+        }
         return null;
 
     }
 
     public String[][] getBoard() {
-        return null;
+        return board;
     }
 }

@@ -5,10 +5,10 @@ package rocks.zipcode.io.quiz3.collections;
  */
 public class Lab {
     private String labName;
+    private LabStatus labStatus;
 
     public Lab() {
-
-        this(null);
+        this.labName = "";
     }
 
     public Lab(String labName) {
@@ -22,10 +22,12 @@ public class Lab {
     }
 
     public void setStatus(LabStatus labStatus) {
+        this.labStatus = labStatus;
 
     }
 
     public LabStatus getStatus() {
-        return null;
+
+        return labStatus;
     }
 }

@@ -6,26 +6,47 @@ import java.util.Arrays;
  * @author leon on 09/12/2018.
  */
 public class PigLatinGenerator {
-    public static final char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     public String translate(String str) {
+        String[] words = str.split(" ");
+        StringBuilder result = new StringBuilder();
+        int endIndex = 0;
 
-        int start = 0;
-        int firstVowel = 0;
-        String finalString = "";
-        for(int i = 0; i < str.length(); i++) {
-            char c = Character.toLowerCase(str.charAt(i));
-            if (Arrays.asList(vowels).contains(c)){
-                firstVowel = i;
-                break;
+
+        for (String word : words){
+            if (VowelUtils.startsWithVowel(word) && word.equals(getEndIndex(words))){
+                result.append(word).append("way");
+            }
+            else if (VowelUtils.startsWithVowel(word) && !word.equals(getEndIndex(words))){
+                result.append(word).append("way").append(" ");
+                }
+            else{
+                int startIndex = VowelUtils.getIndexOfFirstVowel(word);
+                if (startIndex != -1 && word.equals(getEndIndex(words))){
+                    result.append(word.substring(startIndex)).append(word, 0, startIndex).append("ay");
+                }
+                else if (startIndex != -1 && !word.equals(getEndIndex(words))){
+                    result.append(word.substring(startIndex)).append(word, 0, startIndex).append("ay").append(" ");
+                    }
+                else {
+                    if (word.equals(getEndIndex(words))){
+                        result.append(word).append("way");
+                    }
+                    else if (!word.equals(getEndIndex(words))){
+                        result.append(word).append("way").append(" ");
+                    }
+                }
             }
         }
-        if (start != firstVowel){
-            String startString = str.substring(firstVowel, str.length());
-            String endString = str.substring(start, firstVowel) + "ay";
-            finalString = startString + endString;
-            return finalString;
-        }
+        return result.toString();
+    }
 
-        return finalString;
+    public Integer getEndIndex(String[] words){
+        int endIndex = 0;
+        for (int i = 0; i < words.length; i++){
+            if (i == words.length-1){
+                endIndex = i;
+            }
+        }
+        return endIndex;
     }
 }

@@ -6,7 +6,6 @@ import java.util.Arrays;
  * @author leon on 09/12/2018.
  */
 public class VowelUtils {
-    //public static char[] vowels = {'a', 'e', 'i', 'o','u'};
     public static String vowels = "aeiou";
 
     public static Boolean hasVowels(String word) {
@@ -32,10 +31,9 @@ public class VowelUtils {
         return -1;
     }
 
-
     public static Boolean startsWithVowel(String word) {
         for (int i = 0; i < vowels.length(); i++){
-            if (word.charAt(0) == vowels.charAt(i)){
+            if (Character.toUpperCase(vowels.charAt(i)) == word.charAt(0)){
                 return true;
             }
         }
